@@ -11,9 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2025_05_07_115958) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,8 +41,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_07_115958) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.bigint "post_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
@@ -53,8 +50,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_07_115958) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
@@ -62,9 +59,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_07_115958) do
   end
 
   create_table "mentions", force: :cascade do |t|
-    t.bigint "comment_id", null: false
-    t.bigint "post_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "comment_id", null: false
+    t.integer "post_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_mentions_on_comment_id"
@@ -73,15 +70,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_07_115958) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "post_id"
-    t.bigint "comment_id"
+    t.integer "user_id", null: false
+    t.integer "post_id"
+    t.integer "comment_id"
     t.string "message"
     t.boolean "read", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "like_id"
-    t.bigint "relationship_id"
+    t.integer "like_id"
+    t.integer "relationship_id"
     t.index ["comment_id"], name: "index_notifications_on_comment_id"
     t.index ["like_id"], name: "index_notifications_on_like_id"
     t.index ["post_id"], name: "index_notifications_on_post_id"
@@ -90,7 +87,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_07_115958) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,7 +96,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_07_115958) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.text "bio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -108,8 +105,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_07_115958) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.bigint "following_id", null: false
-    t.bigint "follower_id", null: false
+    t.integer "following_id", null: false
+    t.integer "follower_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
@@ -117,8 +114,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_05_07_115958) do
   end
 
   create_table "stocks", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_stocks_on_post_id"

@@ -43,6 +43,7 @@ gem 'gmail'
 
 gem 'cloudinary', '~> 1.16'
 gem 'activestorage-cloudinary-service', '~> 0.2.3'
+gem 'sqlite3', '~> 1.4'
 
 
 group :development, :test do

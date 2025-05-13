@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   post 'auth/guest_login', to: 'guest_sessions#create'
   # 他の認証機能を 'auth' プレフィックスで設定（メール・パスワード認証）
   mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-    sessions: 'sessions'
+    sessions: 'sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   # get "up" => "rails/health#show", as: :rails_health_check

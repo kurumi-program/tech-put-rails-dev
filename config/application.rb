@@ -48,5 +48,9 @@ module SnsApi
 
     config.action_controller.raise_on_missing_callback_actions = false
 
+    config.session_store :cookie_store, key: '_tech_put', same_site: :none, secure: false
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
+
   end
 end

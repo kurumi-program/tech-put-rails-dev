@@ -64,4 +64,6 @@ DeviseTokenAuth.setup do |config|
   # send email, set it to true. (This is a setting for compatibility)
   # config.send_confirmation_email = true
   config.require_client_password_reset_token = true
+
+  config.omniauth_prefix = "/auth"
 end

@@ -1,10 +1,15 @@
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   include ActionController::Cookies
-  before_action :split_token
+
+  # split_tokenは/authパスではスキップする
+  before_action :split_token, unless: -> { request.path.start_with?('/auth') }
+
+  # authenticate_user! が必要なら、同様に条件つけてください（今は呼ばれてないようですが）
+  # before_action :authenticate_user!, unless: -> { request.path.start_with?('/auth') }
 
   private
-  # ゲストログイン時のトークンの設定
+
   def split_token
     return if cookies["_access_token"].nil? || cookies["_client"].nil? || cookies["_uid"].nil?
 
@@ -12,5 +17,4 @@ class ApplicationController < ActionController::API
     request.headers['client'] = cookies["_client"]
     request.headers['uid'] = cookies["_uid"]
   end
-
 end

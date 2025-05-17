@@ -47,6 +47,7 @@ gem 'sqlite3', '~> 1.4'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 
 
